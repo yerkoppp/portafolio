@@ -1,0 +1,585 @@
+:root {
+    /* Variables Base (Dark Mode por defecto) */
+    --primary: #7ED321;
+    --primary-dim: rgba(126, 211, 33, 0.15);
+    --background: #000000;
+    --surface: #1C1C1C;
+    --surface-variant: #2D2D2D;
+    --text: #E3E3E3;
+    --text-secondary: #C4C7C5;
+    --wallpaper-overlay: rgba(0, 0, 0, 0.85); /* Oscurece el logo de fondo */
+    --easing-standard: cubic-bezier(0.2, 0.0, 0, 1.0);
+    --wallpaper-url: url('assets/logo_dark_transp.png');
+}
+
+/* === VARIABLES LIGHT MODE (ESTILO SILVER) === */
+[data-theme="light"] {
+    --primary: #559E15; /* Verde más oscuro para contraste */
+    --primary-dim: rgba(85, 158, 21, 0.1);
+    
+    /* Fondo: Un gris plata muy suave, no blanco puro */
+    --background: #F2F4F6; 
+    
+    /* Superficies: Blanco puro para las tarjetas */
+    --surface: #FFFFFF; 
+    --surface-variant: #E8EAED;
+    
+    --text: #1F1F1F;
+    --text-secondary: #5F6368;
+    
+    /* El overlay del wallpaper es blanco semitransparente */
+    --wallpaper-overlay: rgba(255, 255, 255, 0.6);
+    --wallpaper-url: url('assets/logo_light_transp.png');
+}
+/* === AJUSTE DE ICONOS EN MODO CLARO === */
+/* Esto invierte la lógica: Fondo blanco, sombra de color */
+[data-theme="light"] .icon {
+    background: #FFFFFF;
+    border: 1px solid #E0E0E0;
+    /* Sombra más suave y difusa en modo claro */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.45); 
+}
+
+/* En modo claro, el "Glow" se convierte en una sombra de color elegante */
+[data-theme="light"] .icon::after {
+    opacity: 0.25; /* Más sutil */
+    bottom: -5px; /* Más pegado */
+    filter: blur(8px);
+    background: var(--glow-color); /* Mantiene el color de la marca (azul, verde, etc) */
+}
+
+/* Texto de apps en modo claro: un poco más oscuro y con menos sombra */
+[data-theme="light"] .app-name {
+    color: #333;
+    font-weight: 500;
+    text-shadow: 0 1px 2px rgba(255,255,255,0.8); /* Halo blanco para leerse mejor */
+}
+/* === GLOBAL STYLES === */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Roboto', 'Inter', sans-serif;
+    background: #121212;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Centra verticalmente */
+    padding: 40px 20px; /* Margen para asegurar scroll si es necesario */
+    overflow-y: auto; /* Permite scroll en el navegador si el cel es muy alto */
+}
+
+/* === PHONE FRAME === */
+.phone-frame {
+    width: 380px;
+    height: 800px;
+    background: #1a1a1a;
+    border-radius: 45px;
+    padding: 8px;
+    box-shadow: 0 0 0 2px #333, 0 30px 60px rgba(0,0,0,0.6);
+    position: relative;
+    transition: all 0.3s ease;
+    flex-shrink: 0; /* Evita que se aplaste */
+}
+
+.phone-screen {
+    width: 100%;
+    height: 100%;
+    background-color: var(--background);
+    transition: background 0.5s ease;
+    border-radius: 38px;
+    overflow: hidden;
+    position: relative;
+    /* Wallpaper con Logo */
+    background-image: 
+        radial-gradient(circle at 50% -10%, rgba(126, 211, 33, 0.15) 0%, transparent 70%),
+        var(--wallpaper-url);
+    background-size: 100%, 80%;
+    background-position: center top, center top;
+    background-repeat: no-repeat;
+    z-index: 1;
+    transition: background-image 0.5s ease, background-color 0.5s ease;
+}
+
+/* Capa para oscurecer/aclarar el fondo y que se lea el texto */
+.phone-screen::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--wallpaper-overlay);
+    z-index: -1;
+}
+
+/* === ANDROID UI ELEMENTS === */
+.status-bar {
+    height: 40px;
+    padding: 0 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--text);
+    font-size: 13px;
+    font-weight: 500;
+    position: relative;
+    z-index: 1000;
+    padding-top: 5px;
+}
+
+.camera-hole {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 12px;
+    height: 12px;
+    background: #000;
+    border-radius: 50%;
+    z-index: 1001;
+    box-shadow: 0 0 0 2px #111;
+}
+
+/* === HOME SCREEN === */
+.home-screen {
+    height: 100%;
+    padding: 20px;
+    padding-top: 140px;
+    overflow-y: auto;
+    scrollbar-width: none;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Widget Reloj */
+.clock-widget {
+    margin: 0px 10px 40px;
+    color: var(--text);
+    text-align: center;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+
+.apps-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px 15px;
+    margin-bottom: auto; /* Empuja el resto hacia abajo */
+}
+
+.app-icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: transform 0.2s var(--easing-standard);
+}
+
+.app-icon:active { transform: scale(0.92); }
+
+.icon {
+    width: 58px;
+    height: 58px;
+    border-radius: 16px; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+    background: #161616; 
+    border: 1px solid #2A2A2A;
+    position: relative;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    border: 1px solid rgba(255,255,255,0.05);
+    overflow: hidden; /* Para contener el brillo */
+    transition: transform 0.2s var(--easing-standard), box-shadow 0.2s;
+}
+
+.icon img { width: 70%; height: 70%; object-fit: cover; }
+
+.icon.dark-style {
+    background: rgba(255, 255, 255, 0.05); /* Semitransparente oscuro */
+    border: 1px solid rgba(126, 211, 33, 0.2); /* Borde sutil verde */
+    backdrop-filter: blur(10px);
+}
+
+.icon.brand-style {
+    background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%);
+    border: 1px solid #333;
+}
+
+/* Badge de notificación para iconos */
+.icon-badge {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    width: 16px;
+    height: 16px;
+    background: #FF5252;
+    border-radius: 50%;
+    border: 2px solid var(--background); /* Crea un borde del color de fondo para separar */
+    z-index: 20;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    pointer-events: none; /* Para que no interfiera con el clic */
+}
+
+/* El "Glow" o luz inferior - Se activa con variables CSS */
+.icon::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 100%;
+    height: 60%;
+    background: var(--glow-color, rgba(255, 255, 255, 0.1)); /* Color dinámico */
+    filter: blur(12px);
+    opacity: 0.6;
+    border-radius: 50%;
+    z-index: 0;
+}
+
+/* Asegurar que la imagen/icono esté encima del brillo */
+.icon i, .icon img {
+    position: relative;
+    z-index: 1;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+}
+
+.icon img {
+    border-radius: 12px; /* Suavizar bordes de imagenes cuadradas */
+}
+
+/* Efecto al presionar */
+.app-icon:active .icon {
+    transform: scale(0.92);
+    border-color: var(--primary);
+}
+
+.app-name {
+    color: var(--text);
+    font-size: 12px;
+    text-align: center;
+    font-weight: 400;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.5); /* Sombra para leer sobre wallpaper */
+}
+
+/* === WIDGET CV (Estilo Material) === */
+.widget-cv {
+    grid-column: span 2; /* Ocupa 2 espacios de ancho */
+    background: var(--surface-variant);
+    border-radius: 24px;
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    cursor: pointer;
+    border: 1px solid rgba(255,255,255,0.05);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transition: transform 0.2s var(--easing-standard);
+    position: relative;
+    overflow: hidden;
+}
+
+.widget-cv:active {
+    transform: scale(0.96);
+}
+
+/* Efecto de fondo decorativo sutil */
+.widget-cv::after {
+    content: '';
+    position: absolute;
+    right: -10px;
+    bottom: -10px;
+    width: 60px;
+    height: 60px;
+    background: var(--primary);
+    opacity: 0.1;
+    border-radius: 50%;
+    filter: blur(20px);
+}
+
+.widget-icon {
+    width: 40px;
+    height: 40px;
+    background: #FF5252; /* Rojo PDF */
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 20px;
+    flex-shrink: 0;
+}
+
+.widget-text h4 {
+    font-size: 14px;
+    color: var(--text);
+    margin-bottom: 2px;
+    font-weight: 600;
+}
+
+.widget-text p {
+    font-size: 11px;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+/* === THEME TOGGLE (Quick Settings style) === */
+.theme-toggle-btn {
+    position: absolute;
+    top: 50px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--surface-variant);
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    cursor: pointer;
+    z-index: 50;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+/* === APP SCREENS === */
+.app-screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--background);
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    transform: scale(0.95);
+    pointer-events: none;
+    transition: opacity 0.3s var(--easing-standard), transform 0.4s var(--easing-standard);
+}
+
+.app-screen.active { opacity: 1; transform: scale(1); pointer-events: auto; }
+
+.app-header {
+    padding: 50px 20px 15px;
+    background: var(--surface);
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    color: var(--text);
+    z-index: 10;
+    border-bottom: 1px solid var(--surface-variant);
+}
+
+.back-btn {
+    background: none;
+    border: none;
+    color: var(--text);
+    font-size: 20px;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.back-btn:active { background: var(--primary-dim); }
+
+.app-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px;
+    color: var(--text);
+}
+
+/* Cards */
+.info-card {
+    background: var(--surface);
+    border-radius: 24px;
+    padding: 24px;
+    margin-bottom: 16px;
+    border: 1px solid var(--surface-variant);
+}
+
+/* Transición suave para todos los elementos contenedores */
+.info-card, .contact-item, .browser-preview, .widget-cv {
+    transition: box-shadow 0.3s ease, transform 0.2s ease, border-color 0.3s;
+    position: relative;
+    z-index: 1;
+}
+
+.info-card h3 { color: var(--primary); font-size: 14px; margin-bottom: 12px; letter-spacing: 0.5px; }
+
+.skill-tag {
+    background: var(--surface-variant);
+    color: var(--text);
+    padding: 8px 16px;
+    border-radius: 12px;
+    font-size: 13px;
+    font-weight: 500;
+    margin: 4px;
+    display: inline-block;
+}
+
+/* Contact Item */
+.contact-item {
+    background: var(--surface);
+    padding: 16px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    border: 1px solid var(--surface-variant);
+}
+
+.contact-icon-box {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--primary-dim);
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+}
+
+/* === BROWSER / DESKTOP PREVIEW === */
+.browser-preview {
+    background: var(--surface);
+    border-radius: 16px;
+    padding: 20px;
+    text-align: center;
+    border: 1px solid var(--surface-variant);
+}
+
+.desktop-mockup {
+    width: 100%;
+    height: 150px;
+    background: #333;
+    border-radius: 8px;
+    margin: 20px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #666;
+    position: relative;
+    overflow: hidden;
+}
+
+/* === NOTIFICACIÓN === */
+.notification-popup {
+    position: absolute;
+    top: -100px;
+    left: 12px;
+    right: 12px;
+    background: var(--surface);
+    border-radius: 28px;
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    z-index: 2000;
+    cursor: pointer;
+    transition: top 0.6s var(--easing-standard);
+    border: 1px solid var(--surface-variant);
+}
+
+.notification-popup.show { top: 50px; }
+.notif-content h4 { font-size: 14px; color: var(--text); margin-bottom: 2px; }
+.notif-content p { font-size: 12px; color: var(--text-secondary); }
+
+/* --- MODO CLARO: EFECTO "GLOW SHADOW" (Igual a tu Web) --- */
+[data-theme="light"] .info-card,
+[data-theme="light"] .contact-item,
+[data-theme="light"] .browser-preview {
+    background: #FFFFFF;
+    border: 1px solid rgba(0,0,0,0.05); /* Borde casi invisible */
+    
+    /* AQUÍ ESTÁ LA MAGIA: Sombra difusa con el color de la app */
+    box-shadow: 0 10px 30px -10px var(--app-glow, rgba(0,0,0,0.1));
+}
+
+/* Efecto Hover/Touch para interactividad */
+[data-theme="light"] .contact-item:active,
+[data-theme="light"] .app-icon:active {
+    transform: translateY(2px);
+    box-shadow: 0 5px 15px -5px var(--app-glow, rgba(0,0,0,0.15));
+}
+
+/* --- DEFINICIÓN DE COLORES POR APP --- */
+/* Esto asigna el color de sombra específico según en qué app estés */
+
+/* 1. Perfil & Skills (Verde Corporativo #7ED321) */
+#profile-app, #skills-app {
+    --app-glow: rgba(126, 211, 33, 0.35); 
+}
+
+/* 2. Proyectos/Flujo (Cyan/Azul #4ECDC4) */
+#projects-app {
+    --app-glow: rgba(78, 205, 196, 0.35);
+}
+
+/* 3. Certificados (Amarillo/Dorado #FFD700) */
+#certs-app {
+    --app-glow: rgba(255, 215, 0, 0.35);
+}
+
+/* 4. Contacto & LinkedIn (Azul #0077B5) */
+#contact-app {
+    --app-glow: rgba(0, 119, 181, 0.25);
+}
+
+/* 5. Terminal (Verde Hacker #00FF00) */
+#terminal-app {
+    --app-glow: rgba(0, 255, 0, 0.2);
+}
+
+/* 6. Ajustes & Navegador (Gris/Neutro) */
+#settings-app, #browser-app {
+    --app-glow: rgba(0, 0, 0, 0.1);
+}
+
+/* 7. Galería (Morado) */
+#gallery-app {
+    --app-glow: rgba(156, 39, 176, 0.25);
+}
+
+/* --- AJUSTE EXTRA: Títulos de tarjetas --- */
+/* Para que combinen con la sombra */
+.info-card h3 {
+    /* En modo claro, usamos un color un poco más oscuro para lectura, 
+       pero mantenemos el tono de la marca */
+    filter: brightness(0.9); 
+}
+
+/* === RESPONSIVE REAL (Mobile Only) === */
+@media (max-width: 768px) {
+    body {
+        padding: 0;
+        background: var(--background); /* El fondo del body igual al tema */
+        align-items: flex-start;
+        overflow: hidden; /* El scroll lo maneja el phone-screen */
+    }
+
+    .phone-frame {
+        width: 100vw;
+        height: 100vh;
+        border-radius: 0;
+        padding: 0;
+        box-shadow: none;
+        border: none;
+    }
+
+    .phone-screen { border-radius: 0; }
+    .camera-hole { display: none; }
+    .status-bar { height: 35px; padding-top: 10px; }
+}
