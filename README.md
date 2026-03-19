@@ -17,31 +17,25 @@ Portfolio profesional de Desarrollador Android especializado en Kotlin y Jetpack
 
 ## 🚀 Características
 
-- ✨ Diseño moderno y profesional
-- 📱 Totalmente responsive (móvil, tablet, desktop)
-- 🌓 Tema dark/light con cambio dinámico
-- 🎨 Colores personalizados basados en identidad visual
-- ⚡ Animaciones suaves al hacer scroll
-- 🔗 Links directos a proyectos y redes sociales
-- 📜 Secciones colapsables para certificaciones
+- 📱 **Experiencia Dual:** Modo Web tradicional (Landing Page) y Modo Simulador Android interactivo.
+- ✨ Diseño moderno y profesional.
+- 🌓 Tema dark/light con cambio dinámico y guardado de preferencias en `localStorage`.
+- ⚡ Animaciones suaves, scroll responsive y redirección inteligente según el dispositivo del usuario.
+- 📜 Secciones colapsables y grillas adaptativas.
 
 ---
 
 ## 📁 Estructura del Proyecto
 
-```
+```text
 yerkoppp.github.io/
-├── index.html              # Página principal
-├── README.md              # Documentación
-├── favicon.ico            # Favicon del sitio
-└── assets/
-    ├── icono_dark.png     # Logo tema oscuro
-    ├── icono_light.png    # Logo tema claro
-    └── icono-flujo.webp   # Icono de FlujoApp
+├── index.html                 # Página principal (Modo Web)
+├── android-portfolio.html     # Simulador móvil interactivo (Modo Android)
+├── main-style.css             # Estilos de la versión Web
+├── android-style.css          # Estilos del simulador móvil
+├── README.md                  # Documentación
+└── assets/                    # Imágenes, iconos y CV
 ```
-
----
-
 ## 🛠️ Tecnologías
 
 - **HTML5** - Estructura semántica
@@ -57,38 +51,38 @@ yerkoppp.github.io/
   - Menú hamburguesa responsive
 - **Font Awesome 6** - Iconos profesionales
 - **Google Fonts (Inter)** - Tipografía moderna
+}
 
 ---
 
-## 📄 Secciones
+## 👨‍💻 Sobre Mí
+Ingeniero Agrónomo y Contador en transición al desarrollo móvil. Con más de 10 años de experiencia liderando equipos y optimizando procesos operativos, hoy aplico mi pensamiento analítico y visión de negocio en la creación de soluciones nativas Android escalables.
 
-### 🏠 Hero
-Presentación con nombre, rol y descripción profesional.
+## 🚀 Proyectos Destacados
 
-### 👨‍💻 Sobre Mí
-Ingeniero Civil en Informática y Telecomunicaciones especializado en desarrollo Android.
-
-### 🚀 Proyectos Destacados
-
-#### **FlujoApp** - Conecta, gestiona, avanza
-Plataforma de gestión empresarial mobile-first para pequeñas empresas de servicios en terreno.
+### **Flujo - Conecta, gestiona, avanza**
+Plataforma mobile-first diseñada para centralizar inventario, gastos y documentación de PYMEs en terreno.
 
 - 🌐 **Landing:** [FlujoApp Website](https://yerkoppp.github.io/-FlujoApp-Website/)
 - 💻 **Código:** [FlujoApp](https://github.com/yerkoppp/FlujoApp)
 - 🔧 **Stack:** Kotlin, Jetpack Compose, Firebase, MVVM, Clean Architecture
 
-### 💼 Skills
-Kotlin, Jetpack Compose, Firebase, Git, APIs REST, Material Design 3, MVVM, Clean Architecture
+## 💼 Skills Técnicos
+- **Core Android:** Kotlin, Jetpack Compose, Android SDK, Clean Architecture, Coroutines, Hilt.
 
-### 🏢 Experiencia
+- **Backend & Cloud:** Java, Spring Boot, Firebase (Auth, Firestore, Storage).
+
+- **Herramientas:** Git/GitHub, UX/UI Design (Figma), APIs REST (Retrofit), IA Generativa.
+
+## 🏢 Experiencia
 - **Android Developer Freelance** (Jun 2024 - Actualidad)
 - **Founder & Lead Developer - FlujoApp** (Jun 2024 - Actualidad)
 
-### 🎓 Certificaciones
-- **Desarrollo Android:** ONE Oracle Next Education, Google, Kotlin, Firebase
-- **Datos y Análisis:** LinkedIn Learning (SQL, Excel, Análisis)
-- **Habilidades Blandas:** LinkedIn, PUC Chile, Alura Latam
-
+## 🎓 Formación y Certificaciones (+40)
+- **Bootcamp Desarrollo Android:** Talento Digital + SENCE + UNAB.
+- **Especialización Back-End (Java/Spring):** Oracle Next Education - Alura Latam.
+- **UX/UI Design:** Certificado Profesional de Google (Coursera).
+- **Ingeniero Agrónomo:** PUC Chile.
 ---
 
 ## 🎨 Paleta de Colores
@@ -122,8 +116,7 @@ Kotlin, Jetpack Compose, Firebase, Git, APIs REST, Material Design 3, MVVM, Clea
 ---
 
 ## 📝 Licencia
-
-Este portfolio es de código abierto. Siéntete libre de usarlo como inspiración.
+"Este proyecto está bajo la Licencia MIT - mira el archivo LICENSE para más detalles."
 
 ---
 
@@ -131,7 +124,7 @@ Este portfolio es de código abierto. Siéntete libre de usarlo como inspiració
 
 **Hecho con ❤️ y Kotlin**
 
-© 2025 Yerko Osorio - Android Developer
+© 2026 Yerko Osorio - Android Developer
 
 [Portfolio](https://yerkoppp.github.io/portafolio/) • [FlujoApp](https://yerkoppp.github.io/-FlujoApp-Website/) • [GitHub](https://github.com/yerkoppp)
 
