@@ -168,7 +168,7 @@ MIT License — libre para usar como referencia o inspiración.
 
 <div align="center">
 
-Hecho con ❤️ y Kotlin
+Hecho con ❤️ y HTML, CSS y JS
 
 © 2026 Yerko Osorio · Android Developer
 
