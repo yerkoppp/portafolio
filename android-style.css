@@ -1,61 +1,3 @@
-:root {
-    /* Variables Base (Dark Mode por defecto) */
-    --primary: #7ED321;
-    --primary-dim: rgba(126, 211, 33, 0.15);
-    --background: #000000;
-    --surface: #1C1C1C;
-    --surface-variant: #2D2D2D;
-    --text: #E3E3E3;
-    --text-secondary: #C4C7C5;
-    --wallpaper-overlay: rgba(0, 0, 0, 0.85); /* Oscurece el logo de fondo */
-    --easing-standard: cubic-bezier(0.2, 0.0, 0, 1.0);
-    --wallpaper-url: url('assets/logo_dark_transp.png');
-}
-
-/* === VARIABLES LIGHT MODE (ESTILO SILVER) === */
-[data-theme="light"] {
-    --primary: #559E15; /* Verde más oscuro para contraste */
-    --primary-dim: rgba(85, 158, 21, 0.1);
-    
-    /* Fondo: Un gris plata muy suave, no blanco puro */
-    --background: #F2F4F6; 
-    
-    /* Superficies: Blanco puro para las tarjetas */
-    --surface: #FFFFFF; 
-    --surface-variant: #E8EAED;
-    
-    --text: #1F1F1F;
-    --text-secondary: #5F6368;
-    
-    /* El overlay del wallpaper es blanco semitransparente */
-    --wallpaper-overlay: rgba(255, 255, 255, 0.6);
-    --wallpaper-url: url('assets/logo_light_transp.png');
-}
-/* === AJUSTE DE ICONOS EN MODO CLARO === */
-/* Esto invierte la lógica: Fondo blanco, sombra de color */
-[data-theme="light"] .icon {
-    background: #FFFFFF;
-    border: 1px solid #E0E0E0;
-    /* Sombra más suave y difusa en modo claro */
-    box-shadow: 0 4px 12px rgba(0,0,0,0.45); 
-}
-
-/* En modo claro, el "Glow" se convierte en una sombra de color elegante */
-[data-theme="light"] .icon::after {
-    opacity: 0.25; /* Más sutil */
-    bottom: -5px; /* Más pegado */
-    filter: blur(8px);
-    background: var(--glow-color); /* Mantiene el color de la marca (azul, verde, etc) */
-}
-
-/* Texto de apps en modo claro: un poco más oscuro y con menos sombra */
-[data-theme="light"] .app-name {
-    color: #333;
-    font-weight: 500;
-    text-shadow: 0 1px 2px rgba(255,255,255,0.8); /* Halo blanco para leerse mejor */
-}
-/* === GLOBAL STYLES === */
-* { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
     font-family: 'Roboto', 'Inter', sans-serif;
@@ -85,7 +27,7 @@ body {
     width: 100%;
     height: 100%;
     background-color: var(--background);
-    transition: background 0.5s ease;
+    transition: background-color 0.5s ease;
     border-radius: 38px;
     overflow: hidden;
     position: relative;
@@ -262,69 +204,6 @@ body {
     text-shadow: 0 1px 4px rgba(0,0,0,0.5); /* Sombra para leer sobre wallpaper */
 }
 
-/* === WIDGET CV (Estilo Material) === */
-.widget-cv {
-    grid-column: span 2; /* Ocupa 2 espacios de ancho */
-    background: var(--surface-variant);
-    border-radius: 24px;
-    padding: 16px;
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    cursor: pointer;
-    border: 1px solid rgba(255,255,255,0.05);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    transition: transform 0.2s var(--easing-standard);
-    position: relative;
-    overflow: hidden;
-}
-
-.widget-cv:active {
-    transform: scale(0.96);
-}
-
-/* Efecto de fondo decorativo sutil */
-.widget-cv::after {
-    content: '';
-    position: absolute;
-    right: -10px;
-    bottom: -10px;
-    width: 60px;
-    height: 60px;
-    background: var(--primary);
-    opacity: 0.1;
-    border-radius: 50%;
-    filter: blur(20px);
-}
-
-.widget-icon {
-    width: 40px;
-    height: 40px;
-    background: #FF5252; /* Rojo PDF */
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-size: 20px;
-    flex-shrink: 0;
-}
-
-.widget-text h4 {
-    font-size: 14px;
-    color: var(--text);
-    margin-bottom: 2px;
-    font-weight: 600;
-}
-
-.widget-text p {
-    font-size: 11px;
-    color: var(--text-secondary);
-    display: flex;
-    align-items: center;
-    gap: 4px;
-}
-
 /* === THEME TOGGLE (Quick Settings style) === */
 .theme-toggle-btn {
     position: absolute;
@@ -407,7 +286,7 @@ body {
 }
 
 /* Transición suave para todos los elementos contenedores */
-.info-card, .contact-item, .browser-preview, .widget-cv {
+.info-card, .contact-item, .browser-preview {
     transition: box-shadow 0.3s ease, transform 0.2s ease, border-color 0.3s;
     position: relative;
     z-index: 1;
@@ -583,3 +462,102 @@ body {
     .camera-hole { display: none; }
     .status-bar { height: 35px; padding-top: 10px; }
 }
+
+/* === CLASES REUTILIZABLES (Refactor inline) === */
+
+/* Títulos de header de cada app */
+.app-title { font-size: 20px; font-weight: 500; }
+
+/* Textos estándar dentro de cards/items */
+.item-title { color: var(--text); }
+.item-subtitle { color: var(--text-secondary); }
+
+/* Botones full-width estilo pill */
+.btn-primary-pill {
+    width: 100%; padding: 14px;
+    border-radius: 100px; border: none;
+    background: var(--primary); color: #000;
+    font-weight: 700; font-size: 14px; cursor: pointer;
+}
+.btn-secondary-pill {
+    width: 100%; padding: 14px;
+    border-radius: 100px;
+    border: 1px solid var(--border);
+    background: var(--surface-alt); color: var(--text);
+    font-weight: 700; font-size: 14px; cursor: pointer;
+}
+
+/* Barra de búsqueda inferior */
+.search-bar {
+    position: absolute; bottom: 30px;
+    left: 20px; right: 20px;
+    background: var(--surface);
+    padding: 12px 20px; border-radius: 30px;
+    display: flex; align-items: center; gap: 10px;
+    color: var(--text-secondary);
+    border: 1px solid var(--surface-variant);
+    cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    font-size: 14px;
+}
+.search-bar-text { flex: 1; text-align: center; }
+
+/* App Perfil */
+.profile-header { text-align: center; margin-bottom: 30px; margin-top: 20px; }
+.profile-avatar { width: 120px; height: 120px; border-radius: 50%; object-fit: cover; border: 4px solid var(--surface); }
+.profile-name { color: var(--text); font-size: 28px; margin-top: 15px; }
+.profile-role { color: var(--primary); font-size: 16px; }
+
+/* App Certificados */
+.stats-row { display: flex; gap: 10px; margin-bottom: 20px; }
+.stat-chip { flex: 1; background: var(--surface-variant); padding: 12px; border-radius: 16px; text-align: center; }
+.stat-number { color: var(--primary); font-size: 20px; }
+.stat-label { font-size: 11px; color: var(--text-secondary); }
+
+/* App Proyectos */
+.project-card { padding: 0; overflow: hidden; }
+.project-banner { background: var(--surface-variant); padding: 40px; display: flex; justify-content: center; align-items: center; }
+.project-logo { width: 100px; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.2)); }
+.project-body { padding: 24px; }
+.project-title { color: var(--text); font-size: 24px; margin-bottom: 8px; }
+.project-desc { margin-bottom: 20px; }
+.project-tags { margin-bottom: 24px; display: flex; flex-wrap: wrap; gap: 6px; }
+.project-actions { display: flex; flex-direction: column; gap: 10px; }
+
+/* App Navegador */
+.browser-emoji { font-size: 48px; margin-bottom: 20px; }
+.browser-heading { margin-bottom: 10px; }
+.browser-desc { margin-bottom: 30px; }
+.mockup-logo { width: 50px; opacity: 0.5; }
+.mockup-url { margin-left: 10px; }
+.btn-browser {
+    width: 100%; padding: 16px; border-radius: 12px;
+    background: var(--surface-variant); color: var(--primary);
+    font-weight: 700; border: 1px solid var(--primary);
+    cursor: pointer; display: flex;
+    align-items: center; justify-content: center; gap: 10px;
+}
+
+/* App Galería */
+.gallery-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.gallery-img { width: 100%; border-radius: 12px; aspect-ratio: 1/1; }
+.gallery-img.cover { object-fit: cover; }
+.gallery-img.contain { object-fit: contain; background: white; padding: 10px; }
+.gallery-placeholder { background: #333; border-radius: 12px; display: flex; 
+    align-items: center; justify-content: center; aspect-ratio: 1/1; color: #666; }
+
+/* App Terminal */
+.terminal-screen { background: #0C0C0C; }
+.terminal-header { background: #111; border-bottom: 1px solid #333; }
+.terminal-title { font-size: 16px; font-family: monospace; color: #00FF00; }
+.terminal-content { padding: 20px; font-family: 'Courier New', monospace; 
+    color: #00FF00; font-size: 14px; }
+.terminal-input-row { display: flex; gap: 5px; margin-top: 10px; }
+.terminal-input { background: transparent; border: none; color: white; 
+    outline: none; flex: 1; font-family: inherit; }
+
+/* App Ajustes */
+.settings-icon { background: #333; color: white; }
+.settings-item-text { flex: 1; }
+.settings-device-card { margin-top: 20px; }
+.device-info { font-size: 13px; margin-bottom: 8px; }
+.dev-unlock { cursor: pointer; user-select: none; }

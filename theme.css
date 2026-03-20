@@ -1,0 +1,206 @@
+/* =========================================================
+   1. RESETEO GLOBAL
+   ========================================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* =========================================================
+   2. VARIABLES DE TEMA (DARK POR DEFECTO UNIFICADO)
+   ========================================================= */
+:root, [data-theme="dark"] {
+    /* Base compartida */
+    --primary: #7ED321;
+    --primary-dark: #6AB91D;
+    --primary-light: #9FE346;
+    --accent: #4ECDC4;
+    --secondary: #E0E0E0;
+    --background: #0F0F0F; 
+    --surface: #1A1A1A;
+    --surface-alt: #252525;
+    --surface-variant: #2D2D2D;
+    --text: #FFFFFF;
+    --text-secondary: #B0B0B0;
+    --text-tertiary: #808080;
+    --border: #333333;
+    --shadow: rgba(0, 0, 0, 0.3);
+    --shadow-strong: rgba(0, 0, 0, 0.5);
+
+    /* Exclusivos Android UI */
+    --primary-dim: rgba(126, 211, 33, 0.15);
+    --wallpaper-overlay: rgba(0, 0, 0, 0.85);
+    --easing-standard: cubic-bezier(0.2, 0.0, 0, 1.0);
+    --wallpaper-url: url('assets/logo_dark_transp.png');
+}
+
+/* MODO CLARO UNIFICADO */
+[data-theme="light"] {
+    --primary: #559E15; 
+    --primary-dark: #3F7510;
+    --primary-light: #9FE346;
+    --accent: #4ECDC4;
+    --secondary: #4A4A4A;
+    --background: #FAFAFA;
+    --surface: #FFFFFF;
+    --surface-alt: #F5F5F5;
+    --surface-variant: #E8EAED;
+    --text: #1A1A1A;
+    --text-secondary: #5F6368;
+    --text-tertiary: #999999;
+    --border: #E0E0E0;
+    --shadow: rgba(0, 0, 0, 0.1);
+    --shadow-strong: rgba(0, 0, 0, 0.15);
+
+    /* Exclusivos Android UI */
+    --primary-dim: rgba(85, 158, 21, 0.1);
+    --wallpaper-overlay: rgba(255, 255, 255, 0.6);
+    --wallpaper-url: url('assets/logo_light_transp.png');
+}
+
+/* =========================================================
+   3. MÓDULO DE ACCESIBILIDAD NEURODIVERGENTE (WCAG AA/AAA)
+   ========================================================= */
+@import url('https://fonts.cdnfonts.com/css/opendyslexic');
+
+/* Fuente y Espaciado (Excluye íconos) */
+[data-accesibilidad="neuro"] *:not(i):not(.fas):not(.fab):not(.fa-solid):not(.fa-brands) {
+    font-family: 'OpenDyslexic', sans-serif !important;
+    letter-spacing: 0.05em !important;
+    word-spacing: 0.1em !important;
+    line-height: 1.8 !important;
+}
+
+/* Cero Movimientos y Transiciones */
+[data-accesibilidad="neuro"] *,
+[data-accesibilidad="neuro"] *:hover,
+[data-accesibilidad="neuro"] *:focus,
+[data-accesibilidad="neuro"] *:active {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+}
+
+/* Alineación a la izquierda */
+[data-accesibilidad="neuro"] h1,
+[data-accesibilidad="neuro"] h2,
+[data-accesibilidad="neuro"] h3,
+[data-accesibilidad="neuro"] h4,
+[data-accesibilidad="neuro"] h5,
+[data-accesibilidad="neuro"] h6,
+[data-accesibilidad="neuro"] p,
+[data-accesibilidad="neuro"] .section-title,
+[data-accesibilidad="neuro"] .section-subtitle,
+[data-accesibilidad="neuro"] .about-text h3,
+[data-accesibilidad="neuro"] .contact-content > p {
+    text-align: left !important;
+    left: 0 !important;
+    margin-left: 0 !important;
+}
+
+[data-accesibilidad="neuro"] .section-title::after {
+    left: 0 !important;
+}
+
+/* CORRECCIÓN 1: Apagar SOLO decoraciones específicas, salvando los íconos */
+[data-accesibilidad="neuro"] .hero::before,
+[data-accesibilidad="neuro"] .hero::after,
+[data-accesibilidad="neuro"] .project-image::before,
+[data-accesibilidad="neuro"] .icon::after,
+[data-accesibilidad="neuro"] .skill-card::before {
+    display: none !important;
+}
+
+/* CORRECCIÓN 2: Congelar colores de fondo y bordes para evitar parpadeos al hacer hover */
+[data-accesibilidad="neuro"] .skill-card,
+[data-accesibilidad="neuro"] .info-card,
+[data-accesibilidad="neuro"] .project-card,
+[data-accesibilidad="neuro"] .contact-method,
+[data-accesibilidad="neuro"] .contact-item,
+[data-accesibilidad="neuro"] .cert-category {
+    border: 2px solid var(--primary) !important;
+    background: var(--surface) !important;
+    box-shadow: none !important;
+}
+
+/* Congelar enlaces de navegación al hacer hover */
+[data-accesibilidad="neuro"] .nav-links a:hover {
+    color: var(--text-secondary) !important;
+}
+
+/* Apagar sombras de todos los botones en su estado normal */
+[data-accesibilidad="neuro"] .btn,
+[data-accesibilidad="neuro"] .btn-primary,
+[data-accesibilidad="neuro"] .btn-outline,
+[data-accesibilidad="neuro"] .project-link,
+[data-accesibilidad="neuro"] .project-link:hover,
+[data-accesibilidad="neuro"] .project-link.primary,
+[data-accesibilidad="neuro"] .project-link.primary:hover {
+    box-shadow: none !important;
+    transform: none !important;
+}
+
+/* Congelar el color al pasar el mouse */
+[data-accesibilidad="neuro"] .project-link.primary:hover {
+    background: var(--primary) !important;
+}
+
+[data-accesibilidad="neuro"] .project-link.secondary:hover {
+    background: var(--surface-alt) !important;
+    border-color: var(--border) !important;
+    color: var(--text) !important;
+}
+
+/* Congelar botones para evitar cambios bruscos */
+[data-accesibilidad="neuro"] .btn:hover,
+[data-accesibilidad="neuro"] .btn-primary:hover {
+    background: var(--primary) !important;
+    border-color: var(--primary-dark) !important;
+    color: var(--text) !important;
+    transform: none !important; /* <-- CONGELA EL SALTO */
+    box-shadow: none !important; /* <-- APAGA LA SOMBRA */
+}
+[data-accesibilidad="neuro"] .btn-outline:hover {
+    background: transparent !important;
+    border-color: var(--border) !important;
+    color: var(--text) !important;
+    transform: none !important; /* <-- CONGELA EL SALTO */
+    box-shadow: none !important; /* <-- APAGA LA SOMBRA */
+}
+
+/* Ajuste de Contraste Seguro WCAG */
+[data-accesibilidad="neuro"] {
+    --text: #F0F0F0 !important;
+    --text-secondary: #D4D4D4 !important;
+    --text-tertiary: #C0C0C0 !important;
+    --background: #121212 !important;
+    --surface: #1E1E1E !important;
+    --surface-alt: #2A2A2A !important;
+    --surface-variant: #2A2A2A !important;
+}
+
+[data-theme="light"][data-accesibilidad="neuro"] {
+    --text: #1A1A1A !important;
+    --text-secondary: #333333 !important;
+    --text-tertiary: #4D4D4D !important;
+    --background: #FDFDFD !important;
+    --surface: #F5F5F5 !important;
+    --surface-alt: #EBEBEB !important;
+    --surface-variant: #EBEBEB !important;
+    --primary: #223016 !important;
+}
+
+/* Arreglar íconos de habilidades: Fondo verde sólido, alto contraste y sin brillo */
+[data-accesibilidad="neuro"] .skill-icon {
+    background: var(--primary) !important;
+    color: #121212 !important;
+    box-shadow: none !important;
+}
+
+/* Apagar brillo y sombra del botón flotante "volver arriba" */
+[data-accesibilidad="neuro"] .scroll-top,
+[data-accesibilidad="neuro"] .scroll-top:hover {
+    box-shadow: none !important;
+    transform: none !important;
+}

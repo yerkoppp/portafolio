@@ -13,6 +13,7 @@
     <link rel="apple-touch-icon" sizes="180x180" href="assets/icono_dark_transp.png">
     <!-- ESTILOS EXTERNOS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="theme.css">
     <link rel="stylesheet" href="android-style.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 
@@ -50,7 +51,7 @@
             <!-- BARRA DE ESTADO SUPERIOR -->
             <div class="status-bar">
                 <div class="status-left">
-                    <span id="clock" style="margin-left: 10px;" onclick="triggerEasterEgg()">10:00</span>
+                    <span id="clock" style="margin-left: 10px;">10:00</span>
                 </div>
                 <div class="status-right">
                     <i class="fas fa-signal" style="font-size: 12px; margin-right: 6px;"></i>
@@ -160,10 +161,9 @@
                     </div>
                 </div>
 
-                <div style="position: absolute; bottom: 30px; left: 20px; right: 20px; background: var(--surface); padding: 12px 20px; border-radius: 30px; display: flex; align-items: center; gap: 10px; color: var(--text-secondary); border: 1px solid var(--surface-variant); cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.1);"
-                    onclick="openApp('browser')">
+                <div class="search-bar" onclick="openApp('browser')">
                     <i class="fab fa-google" style="font-size: 20px; color: var(--text);"></i>
-                    <div style="flex: 1; text-align: center; font-size: 14px;">Buscar en portafolio...</div>
+                    <div class="search-bar-text">Buscar en portafolio...</div>
                     <i class="fas fa-microphone" style="font-size: 18px;"></i>
                 </div>
             </div>
@@ -173,14 +173,13 @@
             <div class="app-screen" id="profile-app">
                 <div class="app-header">
                     <button class="back-btn" onclick="closeApp('profile')"><i class="fas fa-arrow-left"></i></button>
-                    <span style="font-size: 20px; font-weight: 500;">Perfil</span>
+                    <span class="app-title">Perfil</span>
                 </div>
                 <div class="app-content">
-                    <div style="text-align: center; margin-bottom: 30px; margin-top: 20px;">
-                        <img src="assets/foto.png"
-                            style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover; border: 4px solid var(--surface);">
-                        <h2 style="color: var(--text); font-size: 28px; margin-top: 15px;">Yerko Osorio</h2>
-                        <p style="color: var(--primary); font-size: 16px;">Android Developer</p>
+                    <div class="profile-header">
+                        <img src="assets/foto.png" class="profile-avatar">
+                        <h2 class="profile-name">Yerko Osorio</h2>
+                        <p class="profile-role">Android Developer</p>
                     </div>
                     <div class="info-card">
                         <h3>BIO</h3>
@@ -198,17 +197,17 @@
             <div class="app-screen" id="certs-app">
                 <div class="app-header">
                     <button class="back-btn" onclick="closeApp('certs')"><i class="fas fa-arrow-left"></i></button>
-                    <span style="font-size: 20px; font-weight: 500;">Certificaciones</span>
+                    <span class="app-title">Certificaciones</span>
                 </div>
                 <div class="app-content">
-                    <div style="display: flex; gap: 10px; margin-bottom: 20px;">
-                        <div style="flex: 1; background: var(--surface-variant); padding: 12px; border-radius: 16px; text-align: center;">
-                            <h4 style="color: var(--primary); font-size: 20px;">40+</h4>
-                            <p style="font-size: 11px; color: var(--text-secondary);">Certificados</p>
+                    <div class="stats-row">
+                        <div class="stat-chip">
+                            <h4 class="stat-number">40+</h4>
+                            <p class="stat-label">Certificados</p>
                         </div>
-                        <div style="flex: 1; background: var(--surface-variant); padding: 12px; border-radius: 16px; text-align: center;">
-                            <h4 style="color: var(--primary); font-size: 20px;">500+</h4>
-                            <p style="font-size: 11px; color: var(--text-secondary);">Horas</p>
+                        <div class="stat-chip">
+                            <h4 class="stat-number">500+</h4>
+                            <p class="stat-label">Horas</p>
                         </div>
                     </div>
                     <div class="contact-item">
@@ -243,21 +242,19 @@
             <div class="app-screen" id="projects-app">
                 <div class="app-header">
                     <button class="back-btn" onclick="closeApp('projects')"><i class="fas fa-arrow-left"></i></button>
-                    <span style="font-size: 20px; font-weight: 500;">Proyectos</span>
+                    <span class="app-title">Proyectos</span>
                 </div>
                 <div class="app-content">
-                    <div class="info-card" style="padding: 0; overflow: hidden;">
-                        <div
-                            style="background: var(--surface-variant); padding: 40px; display: flex; justify-content: center; align-items: center;">
-                            <img src="assets/icono_flujo.webp"
-                                style="width: 100px; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.2));">
+                    <div class="info-card project-card">
+                        <div class="project-banner">
+                            <img src="assets/icono_flujo.webp" class="project-logo">
                         </div>
-                        <div style="padding: 24px;">
-                            <h2 style="color: var(--text); font-size: 24px; margin-bottom: 8px;">FlujoApp</h2>
-                            <p style="color: var(--text-secondary); margin-bottom: 20px;">
+                        <div class="project-body">
+                            <h2 class="project-title">FlujoApp</h2>
+                            <p class="item-subtitle project-desc">
                                 Gestión empresarial mobile-first. La solución completa para servicios en terreno.
                             </p>
-                            <div style="margin-bottom: 24px; display: flex; flex-wrap: wrap; gap: 6px;">
+                            <div class="project-tags">
                                 <span class="skill-tag">Kotlin</span>
                                 <span class="skill-tag">Compose</span>
                                 <span class="skill-tag">Firebase</span>
@@ -265,13 +262,11 @@
                                 <span class="skill-tag">Clean Arch</span>
                                 <span class="skill-tag">Material 3</span>
                             </div>
-                            <div style="display: flex; flex-direction: column; gap: 10px;">
-                                <button onclick="window.open('https://yerkoppp.github.io/-FlujoApp-Website/', '_blank')"
-                                    style="width: 100%; padding: 14px; border-radius: 100px; border: none; background: var(--primary); color: #000; font-weight: 700; font-size: 14px; cursor: pointer;">
+                            <div class="project-actions">
+                                <button class="btn-primary-pill" onclick="window.open('https://yerkoppp.github.io/-FlujoApp-Website/', '_blank')">
                                     <i class="fas fa-globe"></i> Sitio Web
                                 </button>
-                                <button onclick="window.open('https://github.com/yerkoppp/FlujoApp', '_blank')"
-                                    style="width: 100%; padding: 14px; border-radius: 100px; border: 1px solid var(--border); background: var(--surface-alt); color: var(--text); font-weight: 700; font-size: 14px; cursor: pointer;">
+                                <button class="btn-secondary-pill" onclick="window.open('https://github.com/yerkoppp/FlujoApp', '_blank')">
                                     <i class="fab fa-github"></i> Ver Código
                                 </button>
                             </div>
@@ -284,7 +279,7 @@
             <div class="app-screen" id="skills-app">
                 <div class="app-header">
                     <button class="back-btn" onclick="closeApp('skills')"><i class="fas fa-arrow-left"></i></button>
-                    <span style="font-size: 20px; font-weight: 500;">Habilidades</span>
+                    <span class="app-title">Habilidades</span>
                 </div>
                 <div class="app-content">
                     <div class="info-card">
@@ -322,7 +317,7 @@
             <div class="app-screen" id="contact-app">
                 <div class="app-header">
                     <button class="back-btn" onclick="closeApp('contact')"><i class="fas fa-arrow-left"></i></button>
-                    <span style="font-size: 20px; font-weight: 500;">Contacto</span>
+                    <span class="app-title">Contacto</span>
                 </div>
                 <div class="app-content">
                     <div class="contact-item" onclick="window.location.href='mailto:ycosorio.dev@gmail.com'">
@@ -347,24 +342,20 @@
             <div class="app-screen" id="browser-app">
                 <div class="app-header">
                     <button class="back-btn" onclick="closeApp('browser')"><i class="fas fa-arrow-left"></i></button>
-                    <span style="font-size: 20px; font-weight: 500;">Navegador</span>
+                    <span class="app-title">Navegador</span>
                 </div>
                 <div class="app-content">
                     <div class="browser-preview">
-                        <div style="font-size: 48px; margin-bottom: 20px;">🖥️</div>
-                        <h2 style="color: var(--text); margin-bottom: 10px;">Versión de Escritorio</h2>
-                        <p style="color: var(--text-secondary); margin-bottom: 30px;">
-                            Estás viendo la versión móvil simulada. Puedes visitar mi portafolio completo en formato web
-                            estándar.
+                        <div class="browser-emoji">🖥️</div>
+                        <h2 class="item-title browser-heading">Versión de Escritorio</h2>
+                        <p class="item-subtitle browser-desc">
+                            Estás viendo la versión móvil simulada. Puedes visitar mi portafolio completo en formato web estándar.
                         </p>
-
                         <div class="desktop-mockup">
-                            <img src="assets/icono_light.png" style="width: 50px; opacity: 0.5;">
-                            <span style="margin-left: 10px;">yerkoppp.github.io</span>
+                            <img src="assets/icono_light.png" class="mockup-logo">
+                            <span class="mockup-url">yerkoppp.github.io</span>
                         </div>
-
-                        <button onclick="window.open('https://yerkoppp.github.io/portafolio/', '_blank')"
-                            style="width: 100%; padding: 16px; border-radius: 12px; border: none; background: var(--surface-variant); color: var(--primary); font-weight: 700; border: 1px solid var(--primary); cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px;">
+                        <button class="btn-browser" onclick="window.open('https://yerkoppp.github.io/portafolio/', '_blank')">
                             <i class="fas fa-external-link-alt"></i> Abrir en Chrome/Safari
                         </button>
                     </div>
@@ -375,42 +366,35 @@
             <div class="app-screen" id="gallery-app">
                 <div class="app-header">
                     <button class="back-btn" onclick="closeApp('gallery')"><i class="fas fa-arrow-left"></i></button>
-                    <span style="font-size: 20px;">Galería</span>
+                    <span class="app-title">Galería</span>
                 </div>
                 <div class="app-content">
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
-                        <img src="assets/foto.png"
-                            style="width: 100%; border-radius: 12px; aspect-ratio: 1/1; object-fit: cover;">
-                        <img src="assets/icono_flujo.webp"
-                            style="width: 100%; border-radius: 12px; background: white; padding: 10px; aspect-ratio: 1/1; object-fit: contain;">
-                        <img src="assets/logo_light.png"
-                            style="width: 100%; border-radius: 12px; background: white; padding: 10px; aspect-ratio: 1/1; object-fit: contain;">
-                        <div
-                            style="background: #333; border-radius: 12px; display: flex; align-items: center; justify-content: center; aspect-ratio: 1/1;">
-                            <i class="fas fa-plus" style="color: #666;"></i>
+                    <div class="gallery-grid">
+                        <img src="assets/foto.png" class="gallery-img cover">
+                        <img src="assets/icono_flujo.webp" class="gallery-img contain">
+                        <img src="assets/logo_light.png" class="gallery-img contain">
+                        <div class="gallery-placeholder">
+                            <i class="fas fa-plus"></i>
                         </div>
                     </div>
                 </div>
             </div>
 
             <!-- APP: TERMINAL -->
-            <div class="app-screen" id="terminal-app" style="background: #0C0C0C;">
-                <div class="app-header" style="background: #111; border-bottom: 1px solid #333;">
+            <div class="app-screen terminal-screen" id="terminal-app">
+                <div class="app-header terminal-header">
                     <button class="back-btn" onclick="closeApp('terminal')"><i class="fas fa-arrow-left"></i></button>
-                    <span style="font-size: 16px; font-family: monospace; color: #00FF00;">user@yerko-os:~</span>
+                    <span class="terminal-title">user@yerko-os:~</span>
                 </div>
-                <div class="app-content"
-                    style="padding: 20px; font-family: 'Courier New', monospace; color: #00FF00; font-size: 14px;">
+                <div class="app-content terminal-content">
                     <div id="terminal-output">
                         <p>YerkoOS v1.0 [Stable]</p>
                         <p>Last login: Wed Dec 3 19:23:14 on ttys000</p>
                         <p><br>Type 'help' for available commands.</p>
                     </div>
-                    <div style="display: flex; gap: 5px; margin-top: 10px;">
+                    <div class="terminal-input-row">
                         <span>$</span>
-                        <input type="text" id="term-input" autocomplete="off"
-                            style="background: transparent; border: none; color: white; outline: none; flex: 1; font-family: inherit;"
-                            onkeydown="handleCommand(event)">
+                        <input type="text" id="term-input" class="terminal-input" autocomplete="off" onkeydown="handleCommand(event)">
                     </div>
                 </div>
             </div>
@@ -419,25 +403,28 @@
             <div class="app-screen" id="settings-app">
                 <div class="app-header">
                     <button class="back-btn" onclick="closeApp('settings')"><i class="fas fa-arrow-left"></i></button>
-                    <span style="font-size: 20px;">Ajustes</span>
+                    <span class="app-title">Ajustes</span>
                 </div>
                 <div class="app-content">
                     <div class="contact-item" onclick="toggleTheme()">
-                        <div class="contact-icon-box" style="background: #333; color: white;"><i
-                                class="fas fa-adjust"></i></div>
-                        <div style="flex: 1;">
-                            <h4 style="color: var(--text);">Tema</h4>
-                            <p style="color: var(--text-secondary);">Cambiar Dark/Light</p>
+                        <div class="contact-icon-box settings-icon"><i class="fas fa-adjust"></i></div>
+                        <div class="settings-item-text">
+                            <h4 class="item-title">Tema</h4>
+                            <p class="item-subtitle">Cambiar Dark/Light</p>
                         </div>
                     </div>
-
-                    <div class="info-card" style="margin-top: 20px;">
+                    <div class="contact-item" onclick="toggleNeuroMode()">
+                        <div class="contact-icon-box settings-icon"><i class="fas fa-brain"></i></div>
+                        <div class="settings-item-text">
+                            <h4 class="item-title">Modo Accesibilidad</h4>
+                            <p class="item-subtitle">Modo Neurodivergente</p>
+                        </div>
+                    </div>
+                    <div class="info-card settings-device-card">
                         <h3>INFORMACIÓN DEL DISPOSITIVO</h3>
-                        <p style="color: var(--text-secondary); font-size: 13px; margin-bottom: 8px;">Versión de
-                            Android: 14.0 (Upside Down Cake)</p>
-                        <p style="color: var(--text-secondary); font-size: 13px; margin-bottom: 8px;">Modelo: Portfolio
-                            Pixel</p>
-                        <p style="color: var(--text-secondary); font-size: 13px;">Desarrollador: Yerko Osorio</p>
+                        <p class="item-subtitle device-info dev-unlock" onclick="unlockDevMode()">Versión de Android: 14.0 (Upside Down Cake)</p>
+                        <p class="item-subtitle device-info">Modelo: Portfolio Pixel</p>
+                        <p class="item-subtitle device-info">Desarrollador: Yerko Osorio</p>
                     </div>
                 </div>
             </div>
@@ -447,172 +434,7 @@
 
 
     <!-- SCRIPTS DE LOGICA DE LA PAGINA -->
-    <script>
-        // === RELOJ & FECHA ===
-        function updateTime() {
-            const now = new Date();
-            const hours = now.getHours().toString().padStart(2, '0');
-            const minutes = now.getMinutes().toString().padStart(2, '0');
-            const timeString = `${hours}:${minutes}`;
-
-            document.getElementById('clock').textContent = timeString;
-            document.getElementById('widget-clock').textContent = timeString;
-
-            const options = { weekday: 'short', day: 'numeric', month: 'short' };
-            document.getElementById('widget-date').textContent = now.toLocaleDateString('es-ES', options);
-        }
-        setInterval(updateTime, 1000);
-        updateTime();
-
-        // === GESTIÓN DE TEMAS (DARK/LIGHT) ===
-        function toggleTheme() {
-            const html = document.documentElement;
-            const themeIcon = document.getElementById('themeIcon');
-
-            if (html.getAttribute('data-theme') === 'dark') {
-                html.setAttribute('data-theme', 'light');
-                themeIcon.className = 'fas fa-moon';
-            } else {
-                html.setAttribute('data-theme', 'dark');
-                themeIcon.className = 'fas fa-sun';
-            }
-        }
-
-        // === NOTIFICACIÓN ===
-        setTimeout(() => {
-            const notif = document.getElementById('notification');
-            notif.classList.add('show');
-            setTimeout(() => hideNotification(), 3000);
-        }, 2000);
-
-        function hideNotification() {
-            document.getElementById('notification').classList.remove('show');
-        }
-
-        // === NAVEGACIÓN ===
-        function openApp(id) {
-            document.getElementById(id + '-app').classList.add('active');
-            hideNotification();
-        }
-
-        function closeApp(id) {
-            document.getElementById(id + '-app').classList.remove('active');
-        }
-
-        // === EASTER EGG: DEVELOPER MODE ===
-        let clickCount = 0;
-
-        function triggerEasterEgg() {
-            clickCount++;
-            if (clickCount === 5) {
-                // 1. Efecto Visual: Cambiar notificación a estilo "System/Hacker"
-                const notif = document.getElementById('notification');
-                const img = notif.querySelector('img');
-                const title = notif.querySelector('h4');
-                const text = notif.querySelector('.notif-content p');
-
-                // Guardamos estado original para no perderlo si el usuario sigue navegando
-                const originalTitle = title.textContent;
-                const originalText = text.textContent;
-
-                // Modificar notificación
-                img.src = "assets/icono_dark.png"; // Usa tu logo técnico
-                title.innerHTML = "<span style='color:#00FF00; font-family: monospace;'>{ DEV_MODE }</span>";
-                text.innerHTML = "Acceso Root concedido. <br>System.Color.Override(NEON);";
-                notif.style.borderColor = "#00FF00";
-                notif.style.background = "#000";
-
-                // Mostrar notificación
-                notif.classList.add('show');
-
-                // 2. Efecto CSS: Sobrescribir variable global a Verde Neón Terminal
-                document.documentElement.style.setProperty('--primary', '#00FF00');
-                document.documentElement.style.setProperty('--text', '#00FF00');
-
-                // 3. Resetear después de 4 segundos
-                setTimeout(() => {
-                    hideNotification();
-
-                    document.documentElement.style.removeProperty('--primary');
-                    document.documentElement.style.removeProperty('--text');
-
-                    // Restaurar textos de notificación para el futuro
-                    setTimeout(() => {
-                        title.textContent = "Yerko Osorio";
-                        text.textContent = "¡Hola! 👋 Echa un vistazo a mi último proyecto.";
-                        notif.style = ""; // Limpiar estilos inline
-                    }, 500);
-
-                    clickCount = 0;
-                }, 4000);
-            }
-        }
-        // === TERMINAL LOGIC ===
-        function handleCommand(e) {
-            if (e.key === 'Enter') {
-                const input = document.getElementById('term-input');
-                const output = document.getElementById('terminal-output');
-                const cmd = input.value.toLowerCase().trim();
-
-                // 1. Renderizar el comando del usuario
-                // Usamos div para asegurar salto de línea limpio
-                output.innerHTML += `
-            <div style="margin-top: 8px;">
-                <span style="color: #00FF00;">➜</span> 
-                <span style="color: #fff;">~</span> 
-                <span style="color: #ccc;">${input.value}</span>
-            </div>`;
-
-                // 2. Procesar comando
-                let response = "";
-                switch (cmd) {
-                    case 'help':
-                        response = "Available commands: <span style='color:#fff'>about, skills, contact, clear, exit</span>";
-                        break;
-                    case 'about':
-                        response = "Yerko Osorio | Android Developer<br>Building native experiences with Kotlin & Compose.";
-                        break;
-                    case 'skills':
-                        response = "• Kotlin, Compose, Android SDK<br>• Clean Arch, Coroutines, Hilt<br>• Java, Spring Boot, Firebase<br>• Git, UX/UI Design, IA";
-                        break;
-                    case 'contact':
-                        // Mostramos el correo en texto por si falla la apertura automática
-                        response = "📧 Email: <span style='color:#fff; text-decoration:underline;'>ycosorio.dev@gmail.com</span><br><span style='font-size:12px; opacity:0.7;'>Opening mail client...</span>";
-                        // Usamos un timeout pequeño para no bloquear la UI
-                        setTimeout(() => {
-                            window.location.href = 'mailto:ycosorio.dev@gmail.com';
-                        }, 800);
-                        break;
-                    case 'clear':
-                        output.innerHTML = "";
-                        response = null;
-                        break;
-                    case 'exit':
-                        response = "Closing session...";
-                        setTimeout(() => closeApp('terminal'), 800);
-                        break;
-                    default:
-                        if (cmd !== "") {
-                            response = `zsh: command not found: <span style='color:#FF5252'>${cmd}</span>`;
-                        }
-                }
-
-                // 3. Renderizar respuesta
-                if (response) {
-                    output.innerHTML += `<div style="color: #aaa; margin-bottom: 10px; line-height: 1.5; margin-left: 14px;">${response}</div>`;
-                }
-
-                // 4. Limpieza y Scroll
-                input.value = "";
-                const content = document.querySelector('#terminal-app .app-content');
-                // Forzamos el scroll al final
-                setTimeout(() => {
-                    content.scrollTop = content.scrollHeight;
-                }, 10);
-            }
-        }
-
-    </script>
+    <script src="android-script.js"></script>
 </body>
 
 </html>
