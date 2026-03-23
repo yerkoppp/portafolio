@@ -740,6 +740,7 @@ section:nth-child(even) {
     display: grid;
     grid-template-columns: 1fr 2fr;
     gap: 0;
+    margin-top: 3rem;
 }
 
 .project-card:hover {
